@@ -15,8 +15,9 @@ const char web_hdr[] PROGMEM = {
   "</head>\n"
   "<body>\n"
   "<h1>Thermometer</h1>\n"
-  "<a href=\"/\">Status</a></li> - \n"
-  "<a href=\"/conf\">Configuration</a></li>\n"
+  "<a href=\"/\">Status</a> - \n"
+  "<a href=\"/conf\">Configuration</a>\n"
+  "<small>FW v" VERSION "</small>\n"
   "<hr>\n"
 };
 PageElement web_hdr_element(web_hdr, {});

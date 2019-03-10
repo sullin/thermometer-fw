@@ -28,6 +28,7 @@
 #define PIN_BTN D3
 #define BTN_LONGPRESS_MS  2500
 
+#define VERSION "0.1"
 
 /* Reset wifi configuration */
 void do_config_reset() {
@@ -105,10 +106,11 @@ void autoconnect() {
 }
 
 void setup() {
+
   delay(1000);
   Serial.begin(115200);
   Serial.println();
-  Serial.println("1234");
+  Serial.println("Thermometer v." VERSION "\n");
 
   conf_load();
 

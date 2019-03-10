@@ -9,6 +9,7 @@ void httpcli_send() {
     if (data.length() == 0) return;
 
     if (http.begin(client, conf.url)) {
+      http.setUserAgent("Thermometer/" VERSION);
       http.addHeader("Authorization", conf.token);
       http.addHeader("Content-Type", "application/x-www-form-urlencoded");
       
