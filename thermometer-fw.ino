@@ -33,6 +33,7 @@
 /* Reset wifi configuration */
 void do_config_reset() {
   Serial.printf("Resetting configuration\n");
+  config_reset();
 
   pinMode(PIN_LED, OUTPUT);
   digitalWrite(PIN_LED, LOW); // red
