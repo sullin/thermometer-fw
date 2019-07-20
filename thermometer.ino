@@ -30,6 +30,7 @@ void thermometer_init() {
   pinMode(PIN_ONE_WIRE, INPUT_PULLUP);
   DS18B20.begin();
   DS18B20.setCheckForConversion(false);
+  DS18B20.setResolution(9);
 }
 
 /* Read 1-wire temperatures */
