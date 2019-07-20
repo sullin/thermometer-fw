@@ -13,6 +13,29 @@
 
 #include "config.h"             // configuration structure definition
 
+/* Compilation HOWTO:
+ *  - Install Arduino IDE
+ *  - Open File -> Preferences, add http://arduino.esp8266.com/stable/package_esp8266com_index.json to additional board manager URLs
+ *  - Open Tools -> Board -> Board Manager, install esp8266 support
+ *  - Download and unpack patched OneWire library from https://github.com/sullin/OneWire (added GPIO16 support)
+ *  - Open Tools -> Manage Libraries and install "DallasTemperature", "PageBuilder" and "WifiManager" libraries
+ *  - Connect board to computer using USB cable
+ *  - Configure Tools menu:
+ *    - Board: LOLIN(WEMOS) D1 R2 & mini
+ *    - Upload speed 921600
+ *    - Cpu Freq: 80MHz
+ *    - Flash: 4MB (no SPIFFS)
+ *    - Debug: disabled
+ *    - Debug Level: None
+ *    - LwIP: "v2 lower memory"
+ *    - VTables: flash
+ *    - Exceptions: disabled
+ *    - Port: the usb serial port where board is hooked to
+ *  - Press Verify button. Sketch should build without errors
+ *  - Press Upload to program the board
+ *  - After programming, power cycle the board to avoid EEPROM issues.
+*/
+
 /* STATUS LED:
  *  red: WiFi not configured, AP with configuration portal running
  *  blinking red: connecting to wifi
