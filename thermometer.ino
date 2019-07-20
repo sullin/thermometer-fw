@@ -102,8 +102,8 @@ String thermometer_get_adc(uint8_t ch) {
 
   uint16_t a = ((d[0] & 0x07) << 7) | (d[1] >> 1);
 
-  /* Sanity check: -40 to 150C */
-  if (a > 1000 || a < 20) return "";
+  /* Sanity check: -35 to 150C */
+  if (a > 990 || a < 20) return "";
 
   float t = ADC_R0 / (1024.0 / a - 1);
   t = log(t / NTC_R) / NTC_B + 1.0 / (NTC_T + 273.15);  // 1/B * ln(R/Ro) + (1/To)
