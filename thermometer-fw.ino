@@ -51,7 +51,7 @@
 #define PIN_BTN D3
 #define BTN_LONGPRESS_MS  2500
 
-#define VERSION "0.1"
+#define VERSION "1.0"
 
 /* Reset wifi configuration */
 void do_config_reset() {
