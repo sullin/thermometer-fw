@@ -2,7 +2,7 @@ ESP8266WebServer server;
 
 //////////////////////////////////////////////////////////////////////
 /* Web page header; used for all web pages served by us. */
-const char web_hdr[] PROGMEM = {
+const char web_hdr[] = {
   "<html><head>\n"
   "<title>Thermometer</title>\n"
   "<style>\n"
@@ -23,14 +23,14 @@ const char web_hdr[] PROGMEM = {
 PageElement web_hdr_element(web_hdr, {});
 
 /* Web page footer. */
-const char web_ftr[] PROGMEM = {
+const char web_ftr[] = {
   "</body></html>\n"
 };
 PageElement web_ftr_element(web_ftr, {});
 
 //////////////////////////////////////////////////////////////////////
 /* Status page */
-const char page_root[] PROGMEM = {
+const char page_root[] = {
   "<div id=\"temp\"></div>\n"
   "\n"
   "<script type=\"text/javascript\">\n"

@@ -5,7 +5,7 @@ extern PageElement web_hdr_element;
 extern PageElement web_ftr_element;
 
 //////////////////////////////////////////////////////////////////////
-const char page_conf[] PROGMEM = {
+const char page_conf[] = {
   "{{REQ}}"
   "<form method=\"post\"><table>"
   "<tr><td>Server: </td><td><input type=\"text\" name=\"srv\" value=\"{{SRV}}\" /></td></tr>"
