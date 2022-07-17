@@ -5,6 +5,7 @@
 #include <ESP8266HTTPClient.h>  // HTTP client
 
 #include <WiFiManager.h>        // Wifi autoconnect portal
+#include <WiFiUdp.h>            // Wifi UDP support for Influx
 
 #include <SPI.h>                // SPI interface support
 #include <OneWire.h>            // 1-wire support
@@ -51,7 +52,7 @@
 #define PIN_BTN D3
 #define BTN_LONGPRESS_MS  2500
 
-#define VERSION "1.0"
+#define VERSION "2.0"
 
 /* Reset wifi configuration */
 void do_config_reset() {
@@ -150,6 +151,7 @@ void setup() {
   
   httpserver_init();
   httpcli_init();
+  ifxcli_init();
   conf_page_init();
   thermometer_init();
 }
@@ -157,5 +159,6 @@ void setup() {
 void loop() {
   httpserver_task();
   httpcli_task();
+  ifxcli_task();
   btn_task();
 }

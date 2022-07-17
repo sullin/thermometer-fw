@@ -14,6 +14,10 @@ void conf_load() {
   }
   EEPROM.end();
   conf.url[sizeof(conf.url)-1] = '\0';
+  conf.token[sizeof(conf.token)-1] = '\0';
+  conf.ifx_srv[sizeof(conf.ifx_srv)-1] = '\0';
+  conf.ifx_db[sizeof(conf.ifx_db)-1] = '\0';
+  conf.ifx_tags[sizeof(conf.ifx_tags)-1] = '\0';
   
   // check for magic and checksum validity
   if (conf.magic == CONF_MAGIC && chk == 0) return;
