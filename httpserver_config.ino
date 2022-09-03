@@ -8,6 +8,9 @@ extern PageElement web_ftr_element;
 const char page_conf[] = {
   "{{REQ}}"
   "<form method=\"post\"><table>"
+  "<tr><td><h2>Thermometer</h2></td></tr>"
+  "<tr><td>NTC R25: </td><td><input type=\"number\" min=\"1000\" max=\"50000\" name=\"ntc_r\" value=\"{{NTC_R}}\" /> ohms</td></tr>"
+  "<tr><td>NTC beta: </td><td><input type=\"number\" min=\"1000\" max=\"5000\" name=\"ntc_b\" value=\"{{NTC_B}}\" /></td></tr>"
   "<tr><td><h2>HTTP reporting</h2></td></tr>"
   "<tr><td>Server URL: </td><td><input type=\"text\" name=\"srv\" value=\"{{SRV}}\" /></td></tr>"
   "<tr><td>Token: </td><td><input type=\"text\" name=\"token\" value=\"{{TOKEN}}\" /></td></tr>"
@@ -87,6 +90,19 @@ String token_REQ(PageArgument& args) {
     conf2.ifx_interval_s = ifx_intrv;
   }
 
+  if (args.hasArg("ntc_r")) {
+    int ntc_r25 = atoi(args.arg("ntc_r").c_str());
+    if (ntc_r25 != 0 && (ntc_r25 < 1000 || ntc_r25 > 50000))
+      return err("Invalid NTC R25");
+    conf2.ntc_r25 = ntc_r25;
+  }
+  if (args.hasArg("ntc_b")) {
+    int ntc_beta = atoi(args.arg("ntc_b").c_str());
+    if (ntc_beta != 0 && (ntc_beta < 1000 || ntc_beta > 5000))
+      return err("Invalid NTC beta");
+    conf2.ntc_beta = ntc_beta;
+  }
+
   conf = conf2;
   conf_store();
   return  String("<div class=\"msg ok\">Configuration saved</div>");
@@ -122,6 +138,13 @@ String token_IFX_INTRV(PageArgument& args) {
   return String(conf.ifx_interval_s);
 }
 
+String token_NTC_R25(PageArgument& args) {
+  return String(conf.ntc_r25);
+}
+String token_NTC_BETA(PageArgument& args) {
+  return String(conf.ntc_beta);
+}
+
 PageElement conf_page_element(page_conf, {
   {"REQ", token_REQ},
   {"SRV", token_SRV},
@@ -134,6 +157,9 @@ PageElement conf_page_element(page_conf, {
   {"IFX_DB", token_IFX_DB},
   {"IFX_TAGS", token_IFX_TAGS},
   {"IFX_INTRV", token_IFX_INTRV},
+
+  {"NTC_R", token_NTC_R25},
+  {"NTC_B", token_NTC_BETA},
 });
 
 PageBuilder conf_page("/conf", {

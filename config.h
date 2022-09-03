@@ -14,6 +14,9 @@ struct config {
   char ifx_db[16];
   char ifx_tags[32];
   uint16_t ifx_interval_s; // 30-300; 0-disabled
+
+  uint16_t ntc_r25;
+  uint16_t ntc_beta;
 };
 
 /* Singleton copy of running configuration */

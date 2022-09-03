@@ -85,8 +85,6 @@ String thermometer_get_tc() {
 /* Read ADC-connected NTC thermistor temperatures */
 #define ADC_R0  10000.0   // pull-up resistor
 #define NTC_T   25.0      // thermistor T0
-#define NTC_R   10000.0   // thermistor resistance at T0
-#define NTC_B   3950      // thermistor beta
 
 String thermometer_get_adc(uint8_t ch) {
   String ret;
@@ -106,7 +104,7 @@ String thermometer_get_adc(uint8_t ch) {
   if (a > 990 || a < 20) return "";
 
   float t = ADC_R0 / (1024.0 / a - 1);
-  t = log(t / NTC_R) / NTC_B + 1.0 / (NTC_T + 273.15);  // 1/B * ln(R/Ro) + (1/To)
+  t = log(t / (float)(conf.ntc_r25)) / (float)(conf.ntc_beta) + 1.0 / (NTC_T + 273.15);  // 1/B * ln(R/Ro) + (1/To)
   t = 1/t - 273.15;
 
   if (t > conf.mintemp) min_ok = true;

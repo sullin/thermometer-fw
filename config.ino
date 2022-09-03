@@ -26,6 +26,8 @@ void conf_load() {
   for(i=0; i<sizeof(struct config); i++)
     c[i] = 0;
   conf.mintemp = 50;
+  conf.ntc_r25 = 10000;
+  conf.ntc_beta = 3950;
 }
 
 /* Store configuration to EEPROM */
